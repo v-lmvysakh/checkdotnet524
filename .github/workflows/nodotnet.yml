@@ -1,0 +1,23 @@
+name: Test setup-dotnet — no version
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Ensure no global.json
+        run: rm -f global.json
+
+      - name: Setup .NET (no version)
+        uses: actions/setup-dotnet@v6
+
+      - name: Check .NET
+        run: |
+          dotnet --version || echo "No dotnet found"
