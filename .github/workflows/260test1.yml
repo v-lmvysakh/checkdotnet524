@@ -46,9 +46,12 @@ jobs:
           dotnet restore
           dotnet build
 
-  # Windows: Default (C: drive)
-  windows-default:
+  # Windows: C: drive
+  windows-c-drive:
     runs-on: windows-latest
+    env:
+      DOTNET_INSTALL_DIR: C:\dotnet
+      NUGET_PACKAGES: C:\nuget-packages
     steps:
       - name: Setup .NET (fresh install - C drive default)
         uses: actions/setup-dotnet@v4
