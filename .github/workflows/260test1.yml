@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup .NET (fresh install)
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 9.0.x
 
@@ -30,7 +30,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Setup .NET (fresh install)
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 9.0.x
 
@@ -54,7 +54,7 @@ jobs:
       NUGET_PACKAGES: C:\nuget-packages
     steps:
       - name: Setup .NET (fresh install - C drive default)
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 9.0.x
 
@@ -78,7 +78,7 @@ jobs:
       NUGET_PACKAGES: D:\nuget-packages
     steps:
       - name: Setup .NET (D drive workaround)
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v6
         with:
           dotnet-version: 9.0.x
 
