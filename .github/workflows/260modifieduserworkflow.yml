@@ -20,6 +20,18 @@ jobs:
         os: [ubuntu-latest, macos-latest]
         cache: [true, false]
         include:
+          - os: windows-2019
+            cache: false
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-2019
+            cache: true
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-2019
+            cache: false
+            DOTNET_INSTALL_DIR: ""
+          - os: windows-2019
+            cache: true
+            DOTNET_INSTALL_DIR: ""
           - os: windows-2022
             cache: false
             DOTNET_INSTALL_DIR: D:\dotnet
@@ -30,6 +42,18 @@ jobs:
             cache: false
             DOTNET_INSTALL_DIR: ""
           - os: windows-2022
+            cache: true
+            DOTNET_INSTALL_DIR: ""
+          - os: windows-latest
+            cache: false
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-latest
+            cache: true
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-latest
+            cache: false
+            DOTNET_INSTALL_DIR: ""
+          - os: windows-latest
             cache: true
             DOTNET_INSTALL_DIR: ""
       fail-fast: false
