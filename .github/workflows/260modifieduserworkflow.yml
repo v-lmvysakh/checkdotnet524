@@ -1,4 +1,4 @@
-name: DotNet check user workflow - modified
+name: DotNet check user workflow - modified - check with impv_func branch (new apprch)
 
 on:
   workflow_dispatch:
@@ -74,7 +74,8 @@ jobs:
           echo "NUGET_PACKAGES: $NUGET_PACKAGES"
 
       - name: Setup .NET 8
-        uses: actions/setup-dotnet@v6
+        # uses: actions/setup-dotnet@v6
+        uses: lmvysakh/setup-dotnet@impv_func
         with:
           dotnet-version: 8.0.x
 
