@@ -1,4 +1,4 @@
-name: DotNet check user workflow - modified - check with impv_func branch (new apprch)
+name: DotNet check user workflow - modified - check with toolcache apprch
  
 on:
   workflow_dispatch:
