@@ -56,7 +56,7 @@ jobs:
       - name: Setup .NET (fresh install - C drive default)
         uses: v-lmvysakh/setup-dotnet@impov_fucn_toolcache
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 9.0.317
 
       - name: dotnet --info
         run: dotnet --info
@@ -82,7 +82,7 @@ jobs:
       - name: Setup .NET (D drive workaround)
         uses: v-lmvysakh/setup-dotnet@impov_fucn_toolcache
         with:
-          dotnet-version: 9.0.x
+          dotnet-version: 9.0.317
 
       - name: dotnet --info
         run: dotnet --info
