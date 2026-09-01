@@ -51,6 +51,7 @@ jobs:
     env:
       DOTNET_INSTALL_DIR: C:\dotnet
       NUGET_PACKAGES: C:\nuget-packages
+      SETUP_DOTNET_EXPERIMENTAL_NODE_WINDOWS_INSTALLER: '1'
     steps:
       - name: Setup .NET (fresh install - C drive default)
         uses: v-lmvysakh/setup-dotnet@impov_fucn_toolcache
@@ -75,6 +76,8 @@ jobs:
     env:
       DOTNET_INSTALL_DIR: D:\dotnet
       NUGET_PACKAGES: D:\nuget-packages
+      SETUP_DOTNET_EXPERIMENTAL_NODE_WINDOWS_INSTALLER: '1'
+
     steps:
       - name: Setup .NET (D drive workaround)
         uses: v-lmvysakh/setup-dotnet@impov_fucn_toolcache
