@@ -1,0 +1,144 @@
+name: Investigate setup-dotnet Windows IO Performance - With 2nd approach
+on:
+  workflow_dispatch:
+
+jobs:
+  # Baseline: Ubuntu
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup .NET (fresh install)
+        uses: v-lmvysakh/setup-dotnet@impv_funcn_toolcache
+        with:
+          dotnet-version: 9.0.x
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
+
+  # Baseline: macOS
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Setup .NET (fresh install)
+        uses: v-lmvysakh/setup-dotnet@impv_funcn_toolcache
+        with:
+          dotnet-version: 9.0.x
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
+
+  # Windows: C: drive
+  windows-c-drive:
+    runs-on: windows-latest
+    env:
+      DOTNET_INSTALL_DIR: C:\dotnet
+      NUGET_PACKAGES: C:\nuget-packages
+    steps:
+      - name: Setup .NET (fresh install - C drive default)
+        uses: v-lmvysakh/setup-dotnet@impv_funcn_toolcache
+        with:
+          dotnet-version: 9.0.x
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
+
+  # Windows: D drive workaround
+  windows-d-drive:
+    runs-on: windows-latest
+    env:
+      DOTNET_INSTALL_DIR: D:\dotnet
+      NUGET_PACKAGES: D:\nuget-packages
+    steps:
+      - name: Setup .NET (D drive workaround)
+        uses: v-lmvysakh/setup-dotnet@impv_funcn_toolcache
+        with:
+          dotnet-version: 9.0.x
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
+
+  # Windows: Disk IO benchmark
+  windows-disk-benchmark:
+    runs-on: windows-latest
+    steps:
+      - name: Benchmark C vs D drive write speed
+        shell: pwsh
+        run: |
+          Write-Host "=== C: Drive Benchmark ==="
+          $cFile = "C:\temp_benchmark.bin"
+          $sw = [System.Diagnostics.Stopwatch]::StartNew()
+          $bytes = New-Object byte[] (100MB)
+          [System.IO.File]::WriteAllBytes($cFile, $bytes)
+          $sw.Stop()
+          Write-Host "C: drive 100MB write: $($sw.ElapsedMilliseconds) ms"
+          Remove-Item $cFile -Force
+
+          Write-Host ""
+          Write-Host "=== D: Drive Benchmark ==="
+          $dFile = "D:\temp_benchmark.bin"
+          $sw = [System.Diagnostics.Stopwatch]::StartNew()
+          [System.IO.File]::WriteAllBytes($dFile, $bytes)
+          $sw.Stop()
+          Write-Host "D: drive 100MB write: $($sw.ElapsedMilliseconds) ms"
+          Remove-Item $dFile -Force
+
+      - name: Benchmark download methods
+        shell: pwsh
+        run: |
+          $url = "https://dot.net/v1/dotnet-install.ps1"
+
+          Write-Host "=== Invoke-WebRequest ==="
+          $sw = [System.Diagnostics.Stopwatch]::StartNew()
+          Invoke-WebRequest -Uri $url -OutFile "C:\iwr_test.ps1"
+          $sw.Stop()
+          Write-Host "Invoke-WebRequest: $($sw.ElapsedMilliseconds) ms"
+
+          Write-Host ""
+          Write-Host "=== curl ==="
+          $sw = [System.Diagnostics.Stopwatch]::StartNew()
+          curl.exe -sL -o "C:\curl_test.ps1" $url
+          $sw.Stop()
+          Write-Host "curl: $($sw.ElapsedMilliseconds) ms"
+
+          Write-Host ""
+          Write-Host "=== WebClient ==="
+          $sw = [System.Diagnostics.Stopwatch]::StartNew()
+          (New-Object System.Net.WebClient).DownloadFile($url, "C:\wc_test.ps1")
+          $sw.Stop()
+          Write-Host "WebClient: $($sw.ElapsedMilliseconds) ms"

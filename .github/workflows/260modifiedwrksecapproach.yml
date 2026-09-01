@@ -1,0 +1,100 @@
+name: DotNet check user workflow - modified - check with impv_func branch (new apprch)
+ 
+on:
+  workflow_dispatch:
+  # push:
+  #   branches: [main]
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_CLI_TELEMETRY_OPTOUT: 1
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    name: "${{ matrix.os }} | cache=${{ matrix.cache }} | D-drive=${{ matrix.DOTNET_INSTALL_DIR != '' }}"
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        cache: [true, false]
+        include:
+          # - os: windows-2019
+          #   cache: false
+          #   DOTNET_INSTALL_DIR: D:\dotnet
+          # - os: windows-2019
+          #   cache: true
+          #   DOTNET_INSTALL_DIR: D:\dotnet
+          # - os: windows-2019
+          #   cache: false
+          #   DOTNET_INSTALL_DIR: ""
+          # - os: windows-2019
+          #   cache: true
+          #   DOTNET_INSTALL_DIR: ""
+          - os: windows-2022
+            cache: false
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-2022
+            cache: true
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-2022
+            cache: false
+            DOTNET_INSTALL_DIR: ""
+          - os: windows-2022
+            cache: true
+            DOTNET_INSTALL_DIR: ""
+          - os: windows-latest
+            cache: false
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-latest
+            cache: true
+            DOTNET_INSTALL_DIR: D:\dotnet
+          - os: windows-latest
+            cache: false
+            DOTNET_INSTALL_DIR: ""
+          - os: windows-latest
+            cache: true
+            DOTNET_INSTALL_DIR: ""
+      fail-fast: false
+    steps:
+      - name: Set Windows D-drive environment
+        if: startsWith(matrix.os, 'windows') && matrix.DOTNET_INSTALL_DIR != ''
+        shell: pwsh
+        run: |
+          echo "DOTNET_INSTALL_DIR=${{ matrix.DOTNET_INSTALL_DIR }}" >> $ENV:GITHUB_ENV
+          echo "NUGET_PACKAGES=D:\nuget\packages" >> $ENV:GITHUB_ENV
+
+      - name: Print configuration
+        shell: bash
+        run: |
+          echo "OS: ${{ matrix.os }}"
+          echo "Cache: ${{ matrix.cache }}"
+          echo "DOTNET_INSTALL_DIR: ${{ matrix.DOTNET_INSTALL_DIR }}"
+          echo "NUGET_PACKAGES: $NUGET_PACKAGES"
+
+      - name: Setup .NET 8
+        uses: v-lmvysakh/setup-dotnet@impv_funcn_toolcache
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Create test project
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+
+      - name: Cache NuGet packages
+        if: matrix.cache
+        uses: actions/cache@v6
+        with:
+          path: ${{ env.NUGET_PACKAGES }}
+          key: ${{ runner.os }}-nuget-${{ hashFiles('TestApp/*.csproj') }}
+          restore-keys: ${{ runner.os }}-nuget-
+
+      - name: Restore
+        run: dotnet restore TestApp
+
+      - name: Build
+        run: dotnet build TestApp --no-restore
