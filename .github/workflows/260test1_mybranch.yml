@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup .NET (fresh install)
-        uses: lmvysakh/setup-dotnet@impv_func
+        uses: v-lmvysakh/setup-dotnet@impv_func
         with:
           dotnet-version: 9.0.x
 
@@ -30,7 +30,7 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: Setup .NET (fresh install)
-        uses: lmvysakh/setup-dotnet@impv_func
+        uses: v-lmvysakh/setup-dotnet@impv_func
         with:
           dotnet-version: 9.0.x
 
@@ -54,7 +54,7 @@ jobs:
       NUGET_PACKAGES: C:\nuget-packages
     steps:
       - name: Setup .NET (fresh install - C drive default)
-        uses: lmvysakh/setup-dotnet@impv_func
+        uses: v-lmvysakh/setup-dotnet@impv_func
         with:
           dotnet-version: 9.0.x
 
@@ -78,7 +78,7 @@ jobs:
       NUGET_PACKAGES: D:\nuget-packages
     steps:
       - name: Setup .NET (D drive workaround)
-        uses: lmvysakh/setup-dotnet@impv_func
+        uses: v-lmvysakh/setup-dotnet@impv_func
         with:
           dotnet-version: 9.0.x
 

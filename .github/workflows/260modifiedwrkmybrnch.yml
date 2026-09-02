@@ -74,7 +74,7 @@ jobs:
           echo "NUGET_PACKAGES: $NUGET_PACKAGES"
 
       - name: Setup .NET 8
-        uses: lmvysakh/setup-dotnet@impv_func
+        uses: v-lmvysakh/setup-dotnet@impv_func
         with:
           dotnet-version: 8.0.x
 
