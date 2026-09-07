@@ -1,0 +1,98 @@
+name: 260 Approach 1 - Testing - my branch
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Baseline: Ubuntu
+  ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup .NET (fresh install)
+        uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        with:
+          dotnet-version: 9.0.317
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
+
+  # Baseline: macOS
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Setup .NET (fresh install)
+        uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        with:
+          dotnet-version: 9.0.317
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
+
+  # Windows: C: drive
+  windows-c-drive:
+    runs-on: windows-latest
+    env:
+      DOTNET_INSTALL_DIR: C:\dotnet
+      NUGET_PACKAGES: C:\nuget-packages
+    steps:
+      - name: Setup .NET (fresh install - C drive default)
+        uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        with:
+          dotnet-version: 9.0.317
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
+
+  # Windows: D drive workaround
+  windows-d-drive:
+    runs-on: windows-latest
+    env:
+      DOTNET_INSTALL_DIR: D:\dotnet
+      NUGET_PACKAGES: D:\nuget-packages
+    steps:
+      - name: Setup .NET (D drive workaround)
+        uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        with:
+          dotnet-version: 9.0.317
+
+      - name: dotnet --info
+        run: dotnet --info
+
+      - name: Create test project and restore
+        run: |
+          dotnet new console -n TestApp
+          cd TestApp
+          dotnet add package Newtonsoft.Json
+          dotnet add package Microsoft.Extensions.DependencyInjection
+          dotnet restore
+          dotnet build
