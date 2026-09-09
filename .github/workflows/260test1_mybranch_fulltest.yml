@@ -59,7 +59,7 @@ jobs:
       - name: Setup .NET (fresh install - C drive default)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          global-json-file: ./global.json
+          global-json-file: global.json
 
       - name: dotnet --info
         run: dotnet --info
