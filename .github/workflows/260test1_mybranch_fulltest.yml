@@ -15,7 +15,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: latest
-          dotnet-channel: 11.0
+          dotnet-channel: LTS
           dotnet-quality: preview
 
       - name: dotnet --info
@@ -38,7 +38,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: latest
-          dotnet-channel: 11.0
+          dotnet-channel: LTS
           dotnet-quality: preview
 
       - name: dotnet --info
@@ -64,7 +64,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: latest
-          dotnet-channel: 11.0
+          dotnet-channel: LTS
           dotnet-quality: preview
 
       - name: dotnet --info
@@ -90,7 +90,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: latest
-          dotnet-channel: 11.0
+          dotnet-channel: LTS
           dotnet-quality: preview
 
       - name: dotnet --info
