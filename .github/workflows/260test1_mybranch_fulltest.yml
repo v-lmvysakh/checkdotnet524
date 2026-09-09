@@ -15,7 +15,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
-          architecture: x64
+          architecture: arm64
 
       - name: dotnet --info
         run: dotnet --info
@@ -37,7 +37,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
-          architecture: x64
+          architecture: arm64
 
       - name: dotnet --info
         run: dotnet --info
@@ -62,7 +62,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
-          architecture: x64
+          architecture: arm64
 
       - name: dotnet --info
         run: dotnet --info
@@ -87,7 +87,7 @@ jobs:
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
-          architecture: x64
+          architecture: arm64
 
       - name: dotnet --info
         run: dotnet --info
