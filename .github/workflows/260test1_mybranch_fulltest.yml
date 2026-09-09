@@ -56,12 +56,12 @@ jobs:
       DOTNET_INSTALL_DIR: C:\dotnet
       NUGET_PACKAGES: C:\nuget-packages
     steps:
-      - name: Setup .NET (fresh install - C drive default) - First time
+      - name: Setup .NET (fresh install - C drive default) - First SDK
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 9.0.317
+          dotnet-version: 8.0.4xx
       
-      - name: Setup .NET (fresh install - C drive default) - Second time
+      - name: Setup .NET (fresh install - C drive default) - Second SDK
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
@@ -85,12 +85,12 @@ jobs:
       DOTNET_INSTALL_DIR: D:\dotnet
       NUGET_PACKAGES: D:\nuget-packages
     steps:
-      - name: Setup .NET (D drive workaround) - First time
+      - name: Setup .NET (D drive workaround) - First SDK
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 9.0.317
+          dotnet-version: 8.0.4xx
       
-      - name: Setup .NET (D drive workaround) - Second time
+      - name: Setup .NET (D drive workaround) - Second SDK
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
