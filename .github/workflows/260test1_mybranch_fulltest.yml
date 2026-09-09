@@ -14,7 +14,8 @@ jobs:
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 10.0.401
+          dotnet-version: latest
+          dotnet-channel: 10.0
           dotnet-quality: ga
 
       - name: dotnet --info
@@ -36,7 +37,8 @@ jobs:
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 10.0.401
+          dotnet-version: latest
+          dotnet-channel: 10.0
           dotnet-quality: ga
 
       - name: dotnet --info
@@ -61,7 +63,8 @@ jobs:
       - name: Setup .NET (fresh install - C drive default)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 10.0.401
+          dotnet-version: latest
+          dotnet-channel: 10.0
           dotnet-quality: ga
 
       - name: dotnet --info
@@ -86,7 +89,8 @@ jobs:
       - name: Setup .NET (D drive workaround)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 10.0.401
+          dotnet-version: latest
+          dotnet-channel: 10.0
           dotnet-quality: ga
 
       - name: dotnet --info
