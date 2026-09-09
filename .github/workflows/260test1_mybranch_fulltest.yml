@@ -14,8 +14,7 @@ jobs:
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 9.0.317
-          architecture: amd64
+          dotnet-version: 10.0.x
 
       - name: dotnet --info
         run: dotnet --info
@@ -36,8 +35,7 @@ jobs:
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          dotnet-version: 9.0.317
-          architecture: amd64
+          dotnet-version: 10.0.x
 
       - name: dotnet --info
         run: dotnet --info
@@ -58,11 +56,15 @@ jobs:
       DOTNET_INSTALL_DIR: C:\dotnet
       NUGET_PACKAGES: C:\nuget-packages
     steps:
-      - name: Setup .NET (fresh install - C drive default)
+      - name: Setup .NET (fresh install - C drive default) - First time
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
-          architecture: amd64
+      
+      - name: Setup .NET (fresh install - C drive default) - Second time
+        uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        with:
+          dotnet-version: 9.0.317
 
       - name: dotnet --info
         run: dotnet --info
@@ -83,11 +85,16 @@ jobs:
       DOTNET_INSTALL_DIR: D:\dotnet
       NUGET_PACKAGES: D:\nuget-packages
     steps:
-      - name: Setup .NET (D drive workaround)
+      - name: Setup .NET (D drive workaround) - First time
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
           dotnet-version: 9.0.317
-          architecture: amd64
+      
+      - name: Setup .NET (D drive workaround) - Second time
+        uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        with:
+          dotnet-version: 9.0.317
+
 
       - name: dotnet --info
         run: dotnet --info
