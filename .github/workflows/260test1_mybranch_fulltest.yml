@@ -17,7 +17,7 @@ jobs:
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          global-json-file: ./global.json
+          dotnet-version: 9.0.317
 
       - name: dotnet --info
         run: dotnet --info
@@ -41,7 +41,7 @@ jobs:
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
-          global-json-file: ./global.json
+          dotnet-version: 9.0.317
 
       - name: dotnet --info
         run: dotnet --info
@@ -67,8 +67,10 @@ jobs:
 
       - name: Setup .NET (fresh install - C drive default)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        env:
+         DOTNET_INSTALL_SKIP_NATIVE_TOOLS: '1'
         with:
-          global-json-file: ./global.json
+          dotnet-version: 9.0.317
 
       - name: dotnet --info
         run: dotnet --info
@@ -91,11 +93,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
-        
+
       - name: Setup .NET (D drive workaround)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
+        env:
+         DOTNET_INSTALL_SKIP_NATIVE_TOOLS: '1'
         with:
-          global-json-file: ./global.json
+          dotnet-version: 9.0.317
 
       - name: dotnet --info
         run: dotnet --info
