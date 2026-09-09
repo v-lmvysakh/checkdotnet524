@@ -11,9 +11,6 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
@@ -35,9 +32,6 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
       - name: Setup .NET (fresh install)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         with:
@@ -62,9 +56,6 @@ jobs:
       DOTNET_INSTALL_DIR: C:\dotnet
       NUGET_PACKAGES: C:\nuget-packages
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
       - name: Setup .NET (fresh install - C drive default)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         env:
@@ -91,9 +82,6 @@ jobs:
       DOTNET_INSTALL_DIR: D:\dotnet
       NUGET_PACKAGES: D:\nuget-packages
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
       - name: Setup .NET (D drive workaround)
         uses: v-lmvysakh/setup-dotnet@imprv_win_fn
         env:
